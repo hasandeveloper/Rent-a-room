@@ -1,0 +1,17 @@
+<h1>List of rooms</h1>
+
+<%if  @room.empty?%>
+<p>No Rooms Are Added<p>
+  <%else%>
+<ol>
+<%@room.each do |room|%>
+
+<%if room.is_authorized?%>
+<li><%= link_to room.name, room_path(room.id)%>-<%=room.price%></li>
+<%end%>
+
+<%end%>
+</ol>
+<%end%>
+
+<%= link_to "Add Room", new_room_path%></br>

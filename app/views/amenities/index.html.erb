@@ -1,0 +1,17 @@
+<h1>Amenities</h1>
+
+<%if @amenity.empty?%>
+<p>No Amenities Are There</p>
+
+<%else%>
+
+<ol>
+<%=@amenity.each do |amenity|%>
+<li><%=amenity.name%></br><%=amenity.description%></br><%= link_to "Edit", edit_amenity_path(amenity.id)%>|<%= link_to "Delete", amenity_path(amenity.id), method: :delete, data: {confirm: "Are you Sure "}%>
+</li>
+<%end%>
+</ol>
+
+<%end%>
+
+<%= link_to "Add", new_amenity_path%>

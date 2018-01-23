@@ -1,0 +1,15 @@
+
+<%if @booking.empty?%>
+<p>No Confirmation Are There<p>
+  <%else%>
+  <ol>
+<% @booking.each do |booking|%>
+<li>Name Of Client:<%=booking.user.username%></br></br>Arriving date:<%=booking.start_date%></br>Departure Date:<%=booking.end_date%></br>
+
+  <%= form_for booking do |f|%>
+  <%= f.hidden_field :is_confirmed, value: true%>
+  <%= f.submit "Confirm"%>
+  <%end%>
+<%end%>
+</ol>
+<%end%>

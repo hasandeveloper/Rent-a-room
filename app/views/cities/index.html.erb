@@ -1,0 +1,9 @@
+<h1>Select Your Destinations</h1>
+<ul>
+<% @city.each do |city|%>
+<li><%= link_to city.name, city_path(city.id)%></li><br>
+<%end%>
+
+<%if (user_signed_in?) && (can? :create, City.new )%>
+<%= link_to "Add City", new_city_path%>
+<%end%>

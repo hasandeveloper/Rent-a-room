@@ -1,0 +1,11 @@
+
+<%=form_for @permission do |f|%>
+
+<label for="Role_id">Select Role:</label></br>
+<%=f.collection_select :role_id, Role.all, :id, :name, prompt: "Select User"%></br>
+
+<label for="user_id">Select User:</label></br>
+<%=f.collection_select :user_id, User.all, :id, :username, prompt: "Select User"%></br>
+
+<%=f.submit%>
+<%end%>

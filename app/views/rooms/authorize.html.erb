@@ -1,0 +1,14 @@
+<%if @room.empty?%>
+<p>All Rooms Are Authorize</p>
+<%else%>
+<ol>
+	<%@room.each do |room|%>
+	<li>Name of Host:<%=room.user.username%></br>Room Name:<%=room.name%></br>Price:<%=room.price%></br>Address:<%=room.address%></br>Description:<%=room.description%></br>Rules:<%=room.rules%></br>Amenity:<%=room.amenity.pluck(:name)%>
+</li>
+ <%= form_for room do |f| %>
+ <%= f.hidden_field :is_authorized, value: true%>
+ <%= f.submit "Authorize"%>
+ <%end%>
+	<%end%>
+</ol>
+<%end%>

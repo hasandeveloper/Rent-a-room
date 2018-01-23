@@ -1,0 +1,19 @@
+<h3><%=@city.name%></h3></br>
+<h2>This city has (<%=@city.rooms.length%>) Rooms</h2>
+<%if @city.rooms.empty?%>
+<p>No Rooms Are available</p>
+<%else%>
+<ol>
+  <%@city.rooms.each do |room|%>
+  <li>Name:<%= link_to room.name, room_path(room.id)%><br>Price:<%=room.description%></br></li>
+  <%end%>
+</ol>
+<%end%>
+
+<%if (user_signed_in?) && (can? :update, City.new )%>
+<%= link_to "Edit", edit_city_path(@city.id)%>
+<%end%>
+
+<%if (user_signed_in?) && (can? :destroy, City.new )%>
+|<%= link_to "Delete", city_path(@city.id), method: :delete, data: {confirm: "Are you Sure?Do You Want To Delete City #{@city.name} "}%>
+<%end%>

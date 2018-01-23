@@ -1,0 +1,17 @@
+<h1>Booking</h1>
+<%= form_for @booking do |f| %>
+<% if @booking.errors.any?%>
+<p>These Errors Are Prohibited From </p>
+<ol>
+<% @booking.errors.full_messages.each do |msg| %>
+<li><%=msg%></li></br>
+<%end%>
+</ol>
+<%end%>
+<p>Arriving Date :</p>
+<%= f.date_select :start_date %>
+<p>Leaving Date :</p>
+<%= f.date_select :end_date %> </br>
+<%= f.hidden_field :room_id, value:@booking.room_id%>
+<%= f.submit "Book"%>
+<%end%>

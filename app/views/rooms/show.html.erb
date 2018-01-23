@@ -1,0 +1,41 @@
+<p>Name:<%=@room.name%></p></br>
+<p>Price:<%=@room.price%></p></br>
+<p>Description:<%=@room.description%></p></br>
+<p>Rules:<%=@room.rules%></p></br>
+<p>Address:<%=@room.address%></p></br>
+<p>Latitude:<%=@room.latitude%></p></br>
+<p>Longitude:<%=@room.longitude%></p></br>
+
+
+
+<h1>Amenities</h1>
+<ol>
+<%@room.amenity.each do |amenity|%>
+<li><%=amenity.name%></br><%=amenity.description%></li></br>
+<%end%>
+<ol>
+<h1>Hosted By:</h1>
+<%= @room.user.username%>
+
+
+  <h1>Booking</h1>
+  <%= form_for @booking do |f| %>
+  <% if @booking.errors.any?%>
+  <p>These Errors Are Prohibited From </p>
+  <ol>
+  <% @booking.errors.full_messages.each do |msg| %>
+  <li><%=msg%></li>
+  <%end%>
+  </ol>
+  <%end%>
+  <p>Arriving Date :</p>
+  <%= f.date_select :start_date %>
+  <p>Leaving Date :</p>
+  <%= f.date_select :end_date %> </br>
+  <%= f.hidden_field :room_id, value:@room.id%>
+  <%= f.submit "Request To Book"%>
+  <%end%>
+
+<%= image_tag(@room.cover.url) if @room.cover %></br>
+
+<%=link_to "edit", edit_room_path(@room.id)%>|<%= link_to "Delete", room_path(@room.id), method: :delete, data: {confirm:"Are You Sure? Do you want to delete this #{@room.name}"}%>

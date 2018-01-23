@@ -1,0 +1,45 @@
+<%= form_for @room do |f| %>
+
+
+<% if @room.errors.any? %>
+<h4>These Errors Are Prohibited From</h4>
+<ol>
+  <% @room.errors.full_messages.each do |msg| %>
+  <li><%=msg%></li>
+</ol>
+<%end%>
+<%end%>
+
+
+<label for="room_id">Belongs To:</label><br>
+<%=f.collection_select :city_id, City.all, :id, :name, prompt: "Select"%></br>
+
+<label for="room_name">Name: </label></br>
+<%=f.text_field :name%></br>
+
+<label for="room_price">Price:</label></br>
+<%=f.number_field :price%></br>
+
+<label for="room_rules">Rules:</br>
+<%=f.text_area :rules%></br>
+
+<label for="room_address">Address:</label></br>
+<%=f.text_area :address%></br>
+
+<label for="room_description">Description:</label></br>
+<%=f.text_area :description%></br>
+
+<%= f.label :cover %></br>
+<%= f.file_field :cover %></br>
+
+<label for="room_amenity">Select Amenities:</label</br>
+  <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id,
+   :name do |amenity|%></br>
+    <%=amenity.check_box%>
+    <%=amenity.label%></br>
+    <%end%>
+
+<%=f.submit%>
+
+
+<%end%>

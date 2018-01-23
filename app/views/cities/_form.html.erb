@@ -1,0 +1,14 @@
+<% if @city.errors.any?%>
+<p>These Erros Are prohibited From Being Save</p>
+<ol>
+<% @city.errors.full_messages.each do |msg|%>
+<li><%=msg%></li>
+<%end%>
+</ol>
+<%end%>
+
+<%= form_for @city do |f|%>
+<label for="city_name">Name</label></br>
+<%=f.text_field :name%></br>
+<%=f.submit%>
+<%end%>

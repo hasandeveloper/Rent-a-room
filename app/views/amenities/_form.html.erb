@@ -1,0 +1,22 @@
+
+
+<%=form_for @amenity do |f|%>
+
+<% if @amenity.errors.any?%>
+<p>These Errors Are Prohibited From Being Save</p>
+<ul>
+  <%@amenity.errors.full_messages.each do |msg| %>
+  <li><%=msg%></li>
+  <%end%>
+</ul>
+<%end%>
+
+<label for="amenity_name">Name:</label></br>
+<%=f.text_field :name%></br>
+
+<label for="amenity_description">Description:</label></br>
+<%=f.text_field :description%></br>
+
+<%=f.submit%>
+
+<%end%>
