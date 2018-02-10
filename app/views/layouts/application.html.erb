@@ -13,18 +13,27 @@
 
     <%if user_signed_in?%>
   welcome : <%= current_user.username %></br>
-
   <%=link_to "Account Setting", edit_user_registration_path%> | <%=link_to "Logout", destroy_user_session_path, method: :delete%>|<%= link_to "Room Bookings", bookings_path%>|
-  <%= link_to "Authorize", rooms_authorize_path%>|
-  <%= link_to "My Rooms", rooms_myrooms_path%>|<%= link_to "Cities", cities_path%>|<%= link_to "Rooms",rooms_path%>|</br>
+  |<%= link_to "Cities", cities_path%>|<%= link_to "Rooms",rooms_path%>|
+  <%= link_to "My Rooms", rooms_myrooms_path%>
+
+
+  <%if (user_signed_in?) && (current_user.role? "admin") %>
+  |<%= link_to "Authorize", rooms_authorize_path%>|
+  <%end%>
 
   <%if (user_signed_in?) && (can? :create, Amenity.new )%>
   <%= link_to "Amenities", amenities_path%>
   <%end%>
-   <%= link_to "Confirmation Rooms", bookings_confirmation_path %>
+
+   <%if (user_signed_in?) && (current_user.role? "host") %>
+   |<%= link_to "Confirmation Rooms", bookings_confirmation_path %>|
+   <%end%>
+
   <%if (user_signed_in?) && (can? :create, Permission.new )%>
   |<%= link_to "Add Role", new_permission_path%>|
   <%end%>
+
   <%else%>
   <%= link_to "Register", new_user_registration_path%> |<%=link_to "Login", new_user_session_path%>
   <%end%>

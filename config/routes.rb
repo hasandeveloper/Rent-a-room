@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  # devise_for :users, controllers: { confirmations: 'confirmations' }
+
   resources :cities
 
   get 'rooms/myrooms'
@@ -14,5 +16,6 @@ Rails.application.routes.draw do
   resources :bookings
 
   root 'cities#index'
+
 
 end
